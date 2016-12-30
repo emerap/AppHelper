@@ -1,5 +1,7 @@
 package com.emerap.app.AppHelper;
 
+import android.content.Context;
+
 import com.emerap.library.AppHelper.Settings;
 
 /**
@@ -9,13 +11,12 @@ import com.emerap.library.AppHelper.Settings;
 
 public class MyAppSettings extends Settings {
 
-    @Override
-    public int getStorageProvider(int provider) {
-        return STORAGE_PROVIDER_SHARED_PREFERENCES;
+    public MyAppSettings(Context context) {
+        super(context);
     }
 
     @Override
-    public int getStorageMode(int storageMode) {
-        return STORAGE_MODE_SINGLE;
+    public int getStorageProvider() {
+        return STORAGE_PROVIDER_SHARED_PREFERENCES;
     }
 }
