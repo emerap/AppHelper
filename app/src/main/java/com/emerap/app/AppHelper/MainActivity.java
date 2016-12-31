@@ -6,9 +6,6 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TEST_INT = "int_value";
-    private static final String TEST_STRING = "string_value";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -16,13 +13,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Context context = getApplicationContext();
-        MyAppSettings appSettings = new MyAppSettings(context);
+        MyAppSettings appSettings = MyAppSettings.newInstance(context);
 
-        // INT
-        appSettings.setInt(TEST_INT, 1);
-        int intValue = appSettings.getInt(TEST_INT, 10);
-        // STRING
-        appSettings.setString(TEST_STRING, "hello world!");
-        String stringValue = appSettings.getString(TEST_STRING, "default");
+        appSettings.setGreetingMessage("124");
+        setTitle(appSettings.getGreetingMessage());
     }
 }

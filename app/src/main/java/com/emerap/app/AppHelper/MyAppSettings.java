@@ -2,7 +2,7 @@ package com.emerap.app.AppHelper;
 
 import android.content.Context;
 
-import com.emerap.library.AppHelper.Settings;
+import com.emerap.library.AppHelper.settings.Settings;
 
 /**
  * Test settings helper.
@@ -15,8 +15,15 @@ public class MyAppSettings extends Settings {
         super(context);
     }
 
-    @Override
-    public int getStorageProvider() {
-        return STORAGE_PROVIDER_SHARED_PREFERENCES;
+    public static MyAppSettings newInstance(Context context) {
+        return new MyAppSettings(context);
+    }
+
+    public String getGreetingMessage() {
+        return getString("greeting_message", "Hello world!");
+    }
+
+    public void setGreetingMessage(String value) {
+        setString("greeting_message", value);
     }
 }
