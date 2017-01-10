@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'app'
+            keyPassword AppSignKeyPassword
+            storePassword AppSignKeyStorePassword
+            storeFile file('appKeystore.jks')
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -13,9 +21,25 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
+        beta {
+            debuggable false
+            jniDebuggable false
+            signingConfig signingConfigs.config
+            renderscriptDebuggable false
+            minifyEnabled true
+            applicationIdSuffix 'beta'
+            versionNameSuffix 'b'
+            zipAlignEnabled true
+        }
+    }
+    productFlavors {
     }
 }
 

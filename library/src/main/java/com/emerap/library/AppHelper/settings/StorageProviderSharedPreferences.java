@@ -81,9 +81,4 @@ class StorageProviderSharedPreferences extends StorageProvider {
     private void setPrefs(SharedPreferences prefs) {
         this.mPrefs = prefs;
     }
-
-    @Override
-    public void onChangePrefix(String prefix) {
-        setPrefix(prefix);
-    }
 }

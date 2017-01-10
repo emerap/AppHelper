@@ -11,31 +11,18 @@ import static com.emerap.library.AppHelper.settings.StorageProvider.TYPE_STRING;
  * Helper for Settings
  * Created by karbunkul on 30.12.2016.
  */
-
 public abstract class Settings {
 
     private Context mContext;
     private String mPrefix;
     private StorageProvider mStorageProvider;
 
-    public interface PrefixChangeListener {
-        void onChangePrefix(String prefix);
-    }
-
-    private PrefixChangeListener listener = new PrefixChangeListener() {
-        @Override
-        public void onChangePrefix(String prefix) {
-
-        }
-    };
-
     /**
      * Constructor
      */
     public Settings(Context context) {
-        setContext(context);
-        setPrefix("default");
-        setStorageProvider(new StorageProviderSharedPreferences(context));
+        this.mContext = context;
+        setPrefix("default").setStorageProvider(new StorageProviderSharedPreferences(context));
     }
 
     /**
@@ -62,7 +49,7 @@ public abstract class Settings {
     /**
      * Get string from settings storage
      *
-     * @param param param
+     * @param param        param
      * @param defaultValue default value
      * @return string from setiings storage
      */
@@ -84,7 +71,7 @@ public abstract class Settings {
     /**
      * Get boolean from settings storage
      *
-     * @param param param
+     * @param param        param
      * @param defaultValue default value
      * @return boolean from setiings storage
      */
@@ -106,7 +93,7 @@ public abstract class Settings {
     /**
      * Get float from settings storage
      *
-     * @param param param
+     * @param param        param
      * @param defaultValue default value
      * @return float from setiings storage
      */
@@ -126,59 +113,38 @@ public abstract class Settings {
     }
 
     /**
-     * Get param name with prefix
+     * Get param name with mPrefix
      *
      * @param param param
-     * @return param with prefix
+     * @return param with mPrefix
      */
     private String getParamName(String param) {
-        String paramName = param + "_" + getPrefix();
-        return paramName;
+        return param + "_" + getPrefix();
     }
 
-    /**
-     * Getters & setters
-     */
-
-    /**
-     * Getter for context
-     *
-     * @return application context
-     */
     protected Context getContext() {
         return mContext;
     }
 
-    /**
-     * Setter for context
-     *
-     * @param context application context
-     */
-    public void setContext(Context context) {
-        this.mContext = context;
+    protected void setContext(Context context) {
+        mContext = context;
     }
 
-    public String getPrefix() {
+    String getPrefix() {
         return mPrefix;
     }
 
-    /**
-     * Setter for prefix
-     *
-     * @param prefix prefix
-     */
-    public void setPrefix(String prefix) {
-        listener.onChangePrefix(prefix);
-        this.mPrefix = prefix;
-
-
+    Settings setPrefix(String prefix) {
+        mPrefix = prefix;
+        return this;
     }
 
-    public StorageProvider getStorageProvider() {
+    StorageProvider getStorageProvider() {
         return mStorageProvider;
     }
 
-    public void setStorageProvider(StorageProvider storageProvider) {
-        this.mStorageProvider = storageProvider;
+    Settings setStorageProvider(StorageProvider storageProvider) {
+        mStorageProvider = storageProvider;
+        return this;
     }
 }

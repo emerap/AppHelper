@@ -10,7 +10,7 @@ import android.content.Context;
 /**
  * Base class for storage provider
  */
-abstract class StorageProvider implements StorageProviderInterface, Settings.PrefixChangeListener {
+abstract class StorageProvider implements StorageProviderInterface {
 
     final static int TYPE_INT = 0;
     final static int TYPE_BOOL = 1;
@@ -18,10 +18,8 @@ abstract class StorageProvider implements StorageProviderInterface, Settings.Pre
     final static int TYPE_FLOAT = 3;
 
     private Context mContext;
-    private String mPrefix;
 
-    public StorageProvider(Context context) {
-        setContext(context);
+    StorageProvider(Context context) {
     }
 
     protected Context getContext() {
@@ -29,14 +27,6 @@ abstract class StorageProvider implements StorageProviderInterface, Settings.Pre
     }
 
     protected void setContext(Context context) {
-        this.mContext = context;
-    }
-
-    protected String getPrefix() {
-        return mPrefix;
-    }
-
-    protected void setPrefix(String prefix) {
-        this.mPrefix = prefix;
+        mContext = context;
     }
 }
