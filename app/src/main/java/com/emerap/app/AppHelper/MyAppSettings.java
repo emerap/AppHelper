@@ -3,6 +3,7 @@ package com.emerap.app.AppHelper;
 import android.content.Context;
 
 import com.emerap.library.AppHelper.settings.Settings;
+import com.example.SettingsItem;
 
 /**
  * Test settings helper.
@@ -10,6 +11,9 @@ import com.emerap.library.AppHelper.settings.Settings;
  */
 
 public class MyAppSettings extends Settings {
+
+    @SettingsItem(name = "123554")
+    String mString = "qwerty";
 
     public MyAppSettings(Context context) {
         super(context);
